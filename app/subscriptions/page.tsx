@@ -1,5 +1,3 @@
-const Subscription = () => {
+export default function SubscriptionPage() {
   return <h1>subscription page</h1>;
-};
-
-export default Subscription;
+}
