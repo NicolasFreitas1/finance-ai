@@ -1,7 +1,8 @@
 "use client";
 
-import { Transaction, TransactionType } from "@prisma/client";
+import { Transaction } from "@prisma/client";
 import { ColumnDef } from "@tanstack/react-table";
+import TransactionTypeBadge from "../_components/type-badge";
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
@@ -11,16 +12,9 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "type",
     header: "Tipo",
-    cell: ({ row: { original: transaction } }) => {
-      if (transaction.type === TransactionType.DEPOSIT) {
-        return "Depósito";
-      }
-      if (transaction.type === TransactionType.EXPENSE) {
-        return "Despesa";
-      }
-
-      return "Investimento";
-    },
+    cell: ({ row: { original: transaction } }) => (
+      <TransactionTypeBadge transaction={transaction} />
+    ),
   },
   {
     accessorKey: "category",
